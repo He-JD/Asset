@@ -56,16 +56,16 @@ URL分级
 >       422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。
 >       500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。
 
-Dao 接口命名规范   |  Service 接口命名规范|
-  - | :-: | -: 
-insert... | Gryffindor| 90 
- batchInsert... | add...| 
-selectXXXByXXX | findXXXByXXX| 
-selectOne|findOne
-count...|count...
-selectXXXList|findXXXList
-updateXXXByXXX|modifyXXXByXXX
-deleteXXXByXXX|removexxxByXXX
+|Dao 接口命名规范   |  Service 接口命名规范|
+ | - | :-: |  
+|insert... | Gryffindor| 
+| batchInsert... | add...| 
+|selectXXXByXXX | findXXXByXXX| 
+|selectOne|findOne|
+|count...|count...|
+|selectXXXList|findXXXList|
+|updateXXXByXXX|modifyXXXByXXX|
+|deleteXXXByXXX|removexxxByXXX|
 
 
 
