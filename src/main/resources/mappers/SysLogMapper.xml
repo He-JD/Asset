@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgq.dao.SysLogDao">
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xgq.entity.SysLog">
+        <id column="id" property="id" />
+        <result column="type" property="type" />
+        <result column="title" property="title" />
+        <result column="remote_addr" property="remoteAddr" />
+        <result column="username" property="username" />
+        <result column="request_uri" property="requestUri" />
+        <result column="http_method" property="httpMethod" />
+        <result column="class_method" property="classMethod" />
+        <result column="params" property="params" />
+        <result column="session_id" property="sessionId" />
+        <result column="response" property="response" />
+        <result column="use_time" property="useTime" />
+        <result column="browser" property="browser" />
+        <result column="area" property="area" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="isp" property="isp" />
+        <result column="exception" property="exception" />
+        <result column="create_by" property="createBy" />
+        <result column="create_date" property="createDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="remarks" property="remarks" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, type, title, remote_addr, username, request_uri, http_method, class_method, params, session_id, response, use_time, browser, area, province, city, isp, exception, create_by, create_date, update_by, update_date, remarks, del_flag
+    </sql>
+
+</mapper>

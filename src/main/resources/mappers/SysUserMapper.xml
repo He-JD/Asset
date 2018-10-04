@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgq.dao.SysUserDao">
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xgq.entity.SysUser">
+        <id column="id" property="id" />
+        <result column="login_name" property="loginName" />
+        <result column="nick_name" property="nickName" />
+        <result column="icon" property="icon" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="tel" property="tel" />
+        <result column="email" property="email" />
+        <result column="locked" property="locked" />
+        <collection property="sysRoleSet" ofType="com.xgq.entity.SysRole">
+            <result property="id" column="role.id"/>
+            <result property="name" column="role.name"/>
+        </collection>
+        <collection property="sysMenuSet"  ofType="com.xgq.entity.SysMenu">
+            <result property="id" column="menu.id"/>
+            <result property="name" column="menu.name"/>
+            <result property="href" column="menu.href"/>
+            <result property="permission" column="menu.permission"/>
+            <result property="bgColor" column="menu.bgColor"/>
+            <result property="icon" column="menu.icon"/>
+            <result property="sort" column="menu.sort"/>
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, login_name, nick_name, icon, password, salt, tel, email, locked, create_date, create_by, update_date, update_by, remarks, del_flag
+    </sql>
+
+    <select id="selectUserByMap" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+            u.id,
+            u.login_name,
+            u.nick_name,
+            u.tel,
+            u.email,
+            u.PASSWORD,
+            u.salt,
+            u.locked,
+            u.del_flag,
+            u.icon,
+            r.id AS "role.id",
+            r.NAME AS "role.name",
+            m.id AS "menu.id",
+            m.NAME AS "menu.name",
+            m.permission AS "menu.permission",
+            m.href AS "menu.href",
+            m.bg_color AS "menu.bgColor",
+            m.icon AS "menu.icon",
+            m.sort AS "menu.sort",
+            u.remarks
+        FROM
+            sys_user u
+            LEFT JOIN sys_user_role sur ON u.id = sur.user_id
+            LEFT JOIN sys_role r ON r.id = sur.role_id
+            LEFT JOIN sys_role_menu srm ON srm.role_id = r.id
+            LEFT JOIN sys_menu m ON m.id = srm.menu_id
+        WHERE
+            u.del_flag = FALSE
+            AND r.del_flag = FALSE
+            <if test="loginName !=null and loginName !=''">
+                AND u.login_name = #{loginName}
+            </if>
+
+            <if test="id != 0 and id != null">
+                and u.id = #{id}
+            </if>
+    </select>
+
+    <select id="selectUserMenuCount" resultType="java.util.Map">
+        select
+        (select count(*) from sys_user where del_flag =false) as "sys:user:list",
+        (select count(*) from sys_role where del_flag =false) as "sys:role:list",
+        (select count(*) from sys_menu where del_flag =false) as "sys:menu:list",
+        (select count(*) from sys_rescource where del_flag = false) as "sys:rescource:list",
+        (select count(*) from sys_log where del_flag = false) as "sys:log:list",
+        24 as "sys:site:list",
+        (select count(*) from information_schema.tables where table_schema='mysiteforme') as "sys:table:list",
+        (select count(*) from sys_dict where del_flag = false) as "sys:dict:list",
+        (select count(*) from blog_comment where del_flag =false) as "blog:comment:list",
+        (select count(*) from blog_article where del_flag = false) as "blog:article:list",
+        (select count(*) from blog_channel where del_flag = false) as "blog:channel:list",
+        (select count(*) from blog_tags where del_flag = false) as "blog:tags:list",
+        (select count(*) from quartz_task where del_flag = false) as "quartz:task:list",
+        (select count(*) from quartz_task_log where del_flag = false) as "quartz:log:list"
+    </select>
+
+
+</mapper>
