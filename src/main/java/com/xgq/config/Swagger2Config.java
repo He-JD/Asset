@@ -34,7 +34,7 @@ public class Swagger2Config {
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("新高桥资产管理系统api文档")
+                .title("Asset系统api文档")
                 .description("Restful API文档")
                 .termsOfServiceUrl("http://blog.csdn.net/forezp")
                 .version("1.0")
