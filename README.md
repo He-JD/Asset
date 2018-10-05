@@ -67,6 +67,39 @@ URL分级
 |updateXXXByXXX|modifyXXXByXXX|
 |deleteXXXByXXX|removexxxByXXX|
 
+### 首页
+![首页](https://img-blog.csdn.net/20181005140656293?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2VlZWVhc3k=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+### 系统权限
+![系统权限](https://img-blog.csdn.net/2018100514073646?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2VlZWVhc3k=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+### 接口文档
+![接口文档](https://img-blog.csdn.net/20181005140830449?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2VlZWVhc3k=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+
+
+
+### 开发环境
+建议开发者使用以下环境，这样避免版本带来的问题
+* IDE:`idea2017`
+* DB:`Mysql5.6.40`  `Redis`(<a href="https://github.com/MicrosoftArchive/redis/releases" target="_blank">Window版本</a>,<a href="https://redis.io/download" target="_blank">Linux版本</a>)
+* JDK:`JAVA 8`
+* WEB:<del>Tomcat8</del>或<del>Tomcat8</del> （采用springboot框架开发时,并没有用到额外的tomcat 用的框架自带的）
+
+# 运行环境
+* WEB服务器：`Weblogic`、`Tomcat`、`WebSphere`、`JBoss`、`Jetty` 等
+* 数据库服务器：`Mysql5.5+`
+* 操作系统：`Windows`、`Linux` (Linux 大小写特别敏感 特别要注意,还有Linux上没有微软雅黑字体,需要安装这个字体,用于生成验证码)
+
+# 快速体验
+* 将源码导入IDE 
+* 将源码路径下的src/main/resources/sql 中的test.sql导入到数据库中(其中有一个有本系统无关仅用于测试的表)
+* 将src\main\resources目录下的application.yml配置文件里的mysql用户名密码改成你本地的
+* 安装redis数据库 默认数据库密码为空(注*** 必须安装redis 否则本系统会报错)
+* redis的window版本有些地方下载可以下不下来,可以到这里下载`https://pan.baidu.com/s/1dG22JQT`  
+* 注册redis系统服务  使其后台默认启动状态
+* 打开src/main/java下的MyGenerator，根据你的配需要置启动，启动自动生成代码(非常强大)
+* 启动系统 预览地址为:`http://localhost:8080`  管理员用户名：`test` 密码：`1`
 
 
 

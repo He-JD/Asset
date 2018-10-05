@@ -22,7 +22,7 @@
     <!-- 顶部 -->
     <div class="layui-header header">
         <div class="layui-main">
-            <a href="#" class="logo">汇湘轩</a>
+            <a href="#" class="logo">Asset</a>
             <!-- 显示/隐藏菜单 -->
             <a href="javascript:" class="iconfont hideMenu icon-menu1"></a>
             <#--<!-- 搜索 &ndash;&gt;-->

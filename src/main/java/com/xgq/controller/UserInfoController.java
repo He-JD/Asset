@@ -27,7 +27,7 @@ import java.util.Map;
  * @author HeJD
  * @since 2018-09-17
  */
-@Api(value = "用户模块接口",tags = "用户模块接口")
+@Api(value = "用户模块接口2",tags = "项目demo接口（保留）")
 @RestController
 @RequestMapping("/userInfo/")
 public class UserInfoController {
@@ -55,7 +55,6 @@ public class UserInfoController {
     }
 
     @ApiOperation(value="添加用户信息",notes = "添加用户数据到数据库")
-    @ApiImplicitParam(name = "userInfo",value="用户对象",paramType = "query",dataType = "object")
     @PostMapping("add")
     @SysLog("添加用户信息")
     public ServerResponse add(UserInfo userInfo){

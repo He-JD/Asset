@@ -83,10 +83,6 @@ mybatis-plus:
 logging:
   config: classpath:log/logback.xml
 
-#自定义配置属性
-# 开启swagger
-swagger:
- enabled: true
 
 
 
