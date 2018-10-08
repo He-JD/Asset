@@ -89,12 +89,12 @@ URL分级
 * JDK:`JAVA 8`
 * WEB:<del>Tomcat8</del>或<del>Tomcat8</del> （采用springboot框架开发时,并没有用到额外的tomcat 用的框架自带的）
 
-# 运行环境
+### 运行环境
 * WEB服务器：`Weblogic`、`Tomcat`、`WebSphere`、`JBoss`、`Jetty` 等
 * 数据库服务器：`Mysql5.5+`
 * 操作系统：`Windows`、`Linux` (Linux 大小写特别敏感 特别要注意,还有Linux上没有微软雅黑字体,需要安装这个字体,用于生成验证码)
 
-# 快速体验
+### 快速体验
 * 将源码导入IDE 
 * 将源码路径下的src/main/resources/sql 中的test.sql导入到数据库中(其中有一个有本系统无关仅用于测试的表)
 * 将src\main\resources目录下的application.yml配置文件里的mysql用户名密码改成你本地的
