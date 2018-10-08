@@ -20,4 +20,12 @@ public class Constants {
      * 验证码
      */
     public static final String VALIDATE_CODE = "validateCode";
+
+    /**
+     * LayUITable规定返回格式常量
+     */
+    public interface LayUiTavleDataMode{
+        int LAY_CODE=0;
+        String LAY_MSG="Data rendering";
+    }
 }

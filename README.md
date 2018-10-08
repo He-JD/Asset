@@ -3,19 +3,22 @@ asset系统是基于springBoot开发的一套简单脚手架系统，主要用�
 
 
 #### 主要功能：
-   本系统定位是一个脚手架，也即是说只搭建系统的骨架，没有具体的业务功能，很多开源系统都是整套系统，相当于一个完整的项目，   这样的弊端很明显，因为不同的业务场景所需要的具体业务不同，所以我们只能学习和参考，膜拜，但不能拿来即用，   随着技术的迭代，优胜劣汰,目前，虽然项目各有不同，但各种项目技术框架的选型和配置都差不多，   所以我更喜欢偏向于搭建一个可以基于任何系统拿来即用的脚手架，因为我觉得有了骨架，具体的血肉因当根据不同的业务场景进行填充，   我相信一个好的脚手架，一定可以大大减少我们苦逼开发人员在搭建配置框架那些繁琐的工作量，   在基于一套配置完善的且风格统一的编码风格下，便得以可以将更多的时间与精力分配到具体的业务功能代码上，轻轻松松，安安静静的码代码。
-
+   本系统定位是一个脚手架，也即是说只搭建系统的骨架，没有具体的业务功能，很多开源系统都是整套系统，相当于一个完整的项目，我不喜欢这样，因为不同的业务场景所需要的具体业务不同，所以我们只能学习和参考，但不能拿来即用，   随着技术的迭代，优胜劣汰,目前，虽然项目各有不同，但各种项目技术框架的选型和配置都差不多，   所以我更喜欢偏向于搭建一个可以基于任何系统拿来即用的脚手架，因为我觉得有了骨架，具体的血肉因当根据不同的业务场景进行填充，   我相信一个好的脚手架，一定可以大大减少我们苦逼开发人员在搭建配置框架那些繁琐的工作量，   在基于一套配置完善的且风格统一的编码风格下，便得以可以将更多的时间与精力分配到具体的业务功能代码上，轻轻松松，安安静静的码代码。
+   ##### 基本功能如下
+   * 用户登录功能
+   * 权限菜单创建，编辑
+   * 用户角色权限分配
 
 #### 技术框架
 
-   * 核心框架：SpringBoot2.0
+   * 核心框架：SpringBoot2.0.4
    * 安全框架：Apache Shiro 1.3.2
    * 缓存框架：Redis 3.2
-   * 持久层框架：MyBatis 3 mybatisplus 2.1.4
+   * 持久层框架：MyBatis, mybatisplus 2.3
    * 数据库连接池：Alibaba Druid 1.0.2
    * 日志管理：SLF4J 1.7、logback
    * 前端框架：layui
-   * 后台模板：layuicms 2.0。
+   * 后台模板：layuicms 2.0
    * 接口文档：swagger2.0
    * 其它插件：lombok
 
@@ -67,14 +70,15 @@ URL分级
 |updateXXXByXXX|modifyXXXByXXX|
 |deleteXXXByXXX|removexxxByXXX|
 
-### 首页
-![首页](https://img-blog.csdn.net/20181005140656293?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2VlZWVhc3k=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-### 系统权限
-![系统权限](https://img-blog.csdn.net/2018100514073646?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2VlZWVhc3k=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
 ### 接口文档
-![接口文档](https://img-blog.csdn.net/20181005140830449?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2VlZWVhc3k=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![接口文档](https://github.com/He-JD/Asset/raw/master/image/api-doc.jpg)
+
+### 角色授权
+![角色授权](https://github.com/He-JD/Asset/raw/master/image/authorization.jpg)
+
+### 菜单权限
+![菜单权限](https://github.com/He-JD/Asset/raw/master/image/menu.jpg)
+
 
 
 

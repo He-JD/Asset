@@ -33,7 +33,7 @@ import java.io.IOException;
  * @author HeJD
  * @since 2018-09-21
  */
-@Api(tags = "用户登录接口")
+@Api(tags = "用户登录模块")
 @Controller
 @Slf4j
 public class LoginController {

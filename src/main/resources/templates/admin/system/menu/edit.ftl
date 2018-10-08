@@ -146,15 +146,21 @@
             var loadIndex = layer.load(2, {
                 shade: [0.3, '#333']
             });
-            $.post("${base}/admin/system/menu/edit",data.field,function (res) {
-                layer.close(loadIndex);
-                if(res.success){
-                    parent.layer.msg("菜单编辑成功!",{time:1500},function(){
-                        //刷新父页面
-                        parent.location.reload();
-                    });
-                }else{
-                    layer.msg(res.message);
+
+            $.ajax({
+                url:"${base}/admin/system/menu",
+                data:data.field,
+                type:'put',
+                success:function (res) {
+                    layer.close(loadIndex);
+                    if(res.status==200){
+                        parent.layer.msg("菜单编辑成功!",{time:1500},function(){
+                            //刷新父页面
+                            parent.location.reload();
+                        });
+                    }else{
+                        layer.msg(res.msg);
+                    }
                 }
             });
             return false;

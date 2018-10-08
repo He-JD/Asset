@@ -3,10 +3,9 @@ package com.xgq.entity;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.google.common.collect.Sets;
 import com.xgq.common.DataEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -20,8 +19,6 @@ import java.util.Set;
  * @since 2018-09-29
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-@Accessors(chain = true)
 public class SysUser extends DataEntity<SysUser> {
 
     private static final long serialVersionUID = 1L;
@@ -62,10 +59,10 @@ public class SysUser extends DataEntity<SysUser> {
     private Integer locked;
 
     @TableField(exist = false)
-    private Set<SysRole> sysRoleSet;
+    private Set<SysRole> sysRoleSet = Sets.newHashSet();
 
     @TableField(exist = false)
-    private Set<SysMenu> sysMenuSet;
+    private Set<SysMenu> sysMenuSet= Sets.newHashSet();
 
     public static final String ID = "id";
 

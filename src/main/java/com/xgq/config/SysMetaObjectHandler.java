@@ -50,7 +50,15 @@ public class SysMetaObjectHandler extends MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         log.info("==========正在调用该update填充字段方法==============");
-        setFieldValByName("updateDate",new Date(), metaObject);
-
+        Object updateDate = getFieldValByName("updateDate",metaObject);
+        Object updateId = getFieldValByName("updateId",metaObject);
+        if (null == updateDate) {
+            setFieldValByName("updateDate", new Date(),metaObject);
+        }
+        if (updateId==null){
+            if(ShiroData.ShiroUser()!=null){
+                setFieldValByName("updateId",ShiroData.getId(),metaObject);
+            }
+        }
     }
 }

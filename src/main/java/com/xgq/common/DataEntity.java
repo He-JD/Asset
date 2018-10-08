@@ -5,6 +5,7 @@ package com.xgq.common;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.FieldStrategy;
 import com.xgq.entity.SysUser;
@@ -50,6 +51,7 @@ public abstract class DataEntity<T extends Model> extends Model<T> {
      * 删除标记（Y：正常；N：删除；A：审核；）
      */
     @TableField(value = "del_flag")
+    @TableLogic
     protected Boolean delFlag=false;
 
     /**

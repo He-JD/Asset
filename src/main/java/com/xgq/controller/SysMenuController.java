@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
  * @Date: 2018/9/29 16:35
  * @Description:
  */
-
 @Api(tags = "菜单管理模块")
 @Slf4j
 @Controller
@@ -45,13 +44,21 @@ public class SysMenuController {
     }
 
     @ApiOperation(value = "跳转添加菜单页面")
-    @GetMapping("menu")
-    public String getMenu(@RequestParam(value = "parentId",required = false) String parentId, Model model){
+    @GetMapping("menu/add_ftl")
+    public String toMenuAdd(@RequestParam(value = "parentId",required = false) String parentId, Model model){
         if (parentId!=null){
            SysMenu parentMenu= iSysMenuService.selectById(parentId);
            model.addAttribute("parentMenu",parentMenu);
         }
         return "admin/system/menu/add";
+    }
+
+    @ApiOperation(value = "跳转编辑菜单页面")
+    @GetMapping("menu/edit_ftl")
+    public String toMenuEdit(String id, Model model){
+            SysMenu sysMenu= iSysMenuService.selectById(id);
+            model.addAttribute("menu",sysMenu);
+        return "admin/system/menu/edit";
     }
 
     @ApiOperation(value = "添加菜单")
@@ -69,7 +76,16 @@ public class SysMenuController {
     @PutMapping("menu/{id}")
     @ResponseBody
     public ServerResponse deleteMenu(@PathVariable("id") Integer id){
-        return iSysMenuService.modifySysMenu(id);
+        return iSysMenuService.removeSysMenu(id);
+    }
+
+    @ApiOperation(value = "编辑菜单")
+    @SysLog("编辑菜单")
+    @RequiresPermissions("sys:menu:edit")
+    @PutMapping("menu")
+    @ResponseBody
+    public ServerResponse editMenue(SysMenu sysMenu){
+        return iSysMenuService.modifyMenu(sysMenu);
     }
 
 }

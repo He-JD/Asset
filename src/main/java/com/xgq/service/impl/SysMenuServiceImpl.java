@@ -81,7 +81,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
 
     @CacheEvict(value = "allMenus",allEntries = true)
     @Override
-    public ServerResponse modifySysMenu(Integer id) {
+    public ServerResponse removeSysMenu(Integer id) {
         SysMenu sysMenu= sysMenuDao.selectById(id);
         sysMenu.setDelFlag(true);
         int result=sysMenuDao.updateById(sysMenu);
@@ -89,6 +89,22 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
             return ServerResponse.createBySuccessMessage("删除成功");
         }
         return ServerResponse.createByErrorMessage("删除失败");
+    }
+
+    @CacheEvict(value = "allMenus",allEntries = true)
+    @Override
+    public ServerResponse modifyMenu(SysMenu sysMenu) {
+        if (findCountByMenuName(sysMenu.getName())>0){
+            return ServerResponse.createByErrorMessage("菜单名称已存在");
+        }
+        if (findCountByPermisson(sysMenu.getPermission())>0){
+            return ServerResponse.createByErrorMessage("权限标识已存在");
+        }
+        int result=  sysMenuDao.updateById(sysMenu);
+        if (result>0){
+            return ServerResponse.createBySuccessMessage("修改成功");
+        }
+        return ServerResponse.createByErrorMessage("修改失败");
     }
 
 

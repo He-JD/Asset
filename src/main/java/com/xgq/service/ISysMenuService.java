@@ -18,5 +18,7 @@ public interface ISysMenuService extends IService<SysMenu> {
 
     ServerResponse addMenu(SysMenu sysMenu);
 
-    ServerResponse modifySysMenu(Integer id);
+    ServerResponse removeSysMenu(Integer id);
+
+    ServerResponse modifyMenu(SysMenu sysMenu);
 }

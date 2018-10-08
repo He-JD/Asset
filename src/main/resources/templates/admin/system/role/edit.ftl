@@ -139,21 +139,22 @@
             var loadIndex = layer.load(2, {
                 shade: [0.3, '#333']
             });
+            console.log(JSON.stringify(data.field));
             $.ajax({
-                type:"POST",
-                url:"${base}/admin/system/role/edit",
+                type:"put",
+                url:"${base}/admin/system/role",
                 dataType:"json",
                 contentType:"application/json",
                 data:JSON.stringify(data.field),
                 success:function(res){
                     layer.close(loadIndex);
-                    if(res.success){
-                        parent.layer.msg("角色编辑成功！",{time:1000},function(){
+                    if(res.status==200){
+                        parent.layer.msg(res.msg,{time:1000},function(){
                             //刷新父页面
                             parent.location.reload();
                         });
                     }else{
-                        layer.msg(res.message,{time:1000},function(){
+                        layer.msg(res.msg,{time:1000},function(){
                             //刷新本页面
                             location.reload();
                         });

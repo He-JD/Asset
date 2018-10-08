@@ -140,7 +140,7 @@
         var addIndex = layer.open({
             title : "添加系统菜单",
             type : 2,
-            content : "${base}/admin/system/menu?parentId="+data,
+            content : "${base}/admin/system/menu/add_ftl?parentId="+data,
             success : function(layero, addIndex){
                 setTimeout(function(){
                     layer.tips('点击此处返回角色列表', '.layui-layer-setwin .layui-layer-close', {
@@ -160,7 +160,7 @@
         var editIndex = layer.open({
             title : "编辑菜单",
             type : 2,
-            content : "${base}/admin/system/menu/edit?id="+data,
+            content : "${base}/admin/system/menu/edit_ftl?id="+data,
             success : function(layero, index){
                 setTimeout(function(){
                     layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
