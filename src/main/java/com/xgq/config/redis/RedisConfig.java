@@ -24,10 +24,10 @@ import java.util.Map;
 /**
  * @Auther: HeJD
  * @Date: 2018/9/17 17:03
- * @Description:redis配置
+ * @Description:redis单机配置
  */
 @EnableCaching
-@Configuration
+//@Configuration
 public class RedisConfig {
 
     /**
