@@ -1,4 +1,4 @@
-package com.xgq.config;
+package com.xgq.config.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -24,7 +24,7 @@ import java.util.Set;
  * @Description: 配置这个类可以使用JedisCluster对象操作集群，使用时直接注入即可
  * @Date: 2019-03-02
  */
-@Configuration
+//@Configuration
 @ConditionalOnClass({JedisCluster.class})
 public class RedisClusterConfig {
 

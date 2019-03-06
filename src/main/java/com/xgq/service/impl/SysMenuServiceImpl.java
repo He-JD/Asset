@@ -32,7 +32,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     @Autowired
     private SysMenuDao sysMenuDao;
 
-    @Cacheable(value = "allMenus", unless = "#result == null")
+    @Cacheable(value = "ASSET_ALL_MENU", unless = "#result == null")
     @Override
     public ServerResponse findSysMenuList() {
         Map<String,Object> map= Maps.newHashMap();
@@ -41,7 +41,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
         return ServerResponse.createBySuccess(sysMenuList);
     }
 
-    @CacheEvict(value = "allMenus",allEntries = true)
+    @CacheEvict(value = "ASSET_ALL_MENU",allEntries = true)
     @Override
     public ServerResponse addMenu(SysMenu sysMenu) {
         if (findCountByMenuName(sysMenu.getName())>0){
@@ -79,7 +79,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
         return ServerResponse.createByErrorMessage("添加菜单失败");
     }
 
-    @CacheEvict(value = "allMenus",allEntries = true)
+    @CacheEvict(value = "ASSET_ALL_MENU",allEntries = true)
     @Override
     public ServerResponse removeSysMenu(Integer id) {
         SysMenu sysMenu= sysMenuDao.selectById(id);
@@ -91,7 +91,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
         return ServerResponse.createByErrorMessage("删除失败");
     }
 
-    @CacheEvict(value = "allMenus",allEntries = true)
+    @CacheEvict(value = "ASSET_ALL_MENU",allEntries = true)
     @Override
     public ServerResponse modifyMenu(SysMenu sysMenu) {
         if (findCountByMenuName(sysMenu.getName())>0){

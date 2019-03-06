@@ -38,7 +38,7 @@ public class MyGenerator {
      * JDBC相关配置
      */
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8";
+    private static final String URL = "jdbc:mysql://:3306/test?useUnicode=true&characterEncoding=UTF-8";
     private static final String USER_NAME = "root";
     private static final String PASSWORD = "123456";
 

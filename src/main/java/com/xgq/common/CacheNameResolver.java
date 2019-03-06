@@ -5,5 +5,9 @@ package com.xgq.common;
  * @Description:
  * @Date: 2019-03-06
  */
-public class CacheNameResolver {
+public interface CacheNameResolver {
+
+    String resolve(String originalCacheName);
 }
+
+

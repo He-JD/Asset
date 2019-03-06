@@ -15,9 +15,8 @@ import java.util.List;
  * @Date: 2019-03-04
  */
 @Data
-@Component
 @ConfigurationProperties(prefix = "asset.cache.redis")
-public class RedisCachePropertie {
+public class RedisCacheProperties {
 
         /**
          * Database index used by the connection factory.

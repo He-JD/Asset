@@ -44,6 +44,7 @@ public class LoginController {
     @ApiOperation(value = "跳转登录页")
     @GetMapping("/login")
     public String login(HttpServletRequest request) {
+
         log.info("跳到这边的路径为:"+request.getRequestURI());
         Subject s = SecurityUtils.getSubject();
         log.info("是否记住登录--->"+s.isRemembered()+"<-----是否有权限登录----->"+s.isAuthenticated()+"<----");

@@ -63,8 +63,8 @@ public class WebLogAspect {
         String param=JSON.toJSONString(args);
         sysLog.setParams(param.length()>5000?JSONObject.toJSONString("请求参数数据过长不与显示"):param);
         String ip= ToolUtil.getClientIp(request);
-        if("0.0.0.0".equals(ip) || "0:0:0:0:0:0:0:1".equals(ip) || "localhost".equals(ip) || "127.0.0.1".equals(ip)){
-            ip = "127.0.0.1";
+        if("0.0.0.0".equals(ip) || "0:0:0:0:0:0:0:1".equals(ip) || "localhost".equals(ip) || "".equals(ip)){
+            ip = "";
         }
         sysLog.setRemoteAddr(ip);
         if (session!=null){
@@ -81,7 +81,7 @@ public class WebLogAspect {
         Map<String,String> browserMap = ToolUtil.getOsAndBrowserInfo(request);
         sysLog.setBrowser(browserMap.get("os")+"-"+browserMap.get("browser"));
 
-        if(!"127.0.0.1".equals(ip)){
+        if(!"".equals(ip)){
             Map<String,String> map = ToolUtil.getAddressByIP(ToolUtil.getClientIp(request));
             sysLog.setArea(map.get("area"));
             sysLog.setProvince(map.get("province"));

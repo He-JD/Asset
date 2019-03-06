@@ -184,7 +184,7 @@ public class ToolUtil {
 
 
     public static void main(String[] args) {
-        Map<String,String> map=   getAddressByIP("127.0.0.1");
+        Map<String,String> map=   getAddressByIP("");
         String area=map.get("area");
         String province= map.get("province");
         String city=map.get("city");

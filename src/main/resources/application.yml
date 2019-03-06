@@ -82,9 +82,15 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: false
 
+# 缓存过期时间配置（默认单位为秒<s>）,不配置则默认过期时间为10 分钟
+asset:
+  cache:
+    redis:
+      expires:
+          ASSET_USER: 120
+          ASSET_ALL_MENU: 180
+
+
+
 logging:
   config: classpath:log/logback.xml
-
-
-
-

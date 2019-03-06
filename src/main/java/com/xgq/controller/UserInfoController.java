@@ -10,9 +10,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -32,13 +34,18 @@ import java.util.Map;
 @RequestMapping("/userInfo/")
 public class UserInfoController {
 
+
+
     @Autowired
     private IUserInfoService iUserInfoService;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @ApiOperation(value = "得到所有用户信息",notes = "查询所有用户信息")
     @GetMapping("getAll")
-    @SysLog("得到所有用户信息")
-    @Cacheable(value = "UserInfoList",keyGenerator = "simpleKeyGenerator")
+    //@SysLog("得到所有用户信息")
+    @Cacheable(value = "ASSET_USER",keyGenerator = "simpleKeyGenerator",cacheResolver = "redisCacheResolver")
     public ServerResponse getAll(){
      List<UserInfo> userInfoList= iUserInfoService.selectList(null);
      return ServerResponse.createBySuccess(userInfoList);
@@ -48,8 +55,9 @@ public class UserInfoController {
     @ApiImplicitParam( name = "id",value = "用户id",paramType = "path",dataType="Integer")
     @GetMapping("get/{id}")
     @SysLog("查询某个用户")
-    @Cacheable(value = "user",key = "#id")
+    @Cacheable(value = "ASSET_USER",key = "#id")
     public ServerResponse get(@PathVariable("id") Integer id){
+        redisTemplate.opsForValue().set(id,"tom");
       UserInfo userInfo= iUserInfoService.selectById(id);
       return   ServerResponse.createBySuccess(userInfo);
     }

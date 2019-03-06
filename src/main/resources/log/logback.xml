@@ -4,7 +4,7 @@
     <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
 
     <!--设置系统日志目录-->
-    <property name="LOG_PATH" value="/asset/assetLog" />
+    <property name="LOG_PATH" value="./asset/assetLog" />
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->

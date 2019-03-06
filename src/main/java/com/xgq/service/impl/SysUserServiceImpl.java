@@ -33,7 +33,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     private SysMenuDao sysMenuDao;
 
 
-    @Cacheable(value = "user", key = "'user_name_'+#userName",unless = "#result == null")
+    @Cacheable(value = "ASSET_USER", key = "'user_name_'+#userName",unless = "#result == null",cacheResolver = "redisCacheResolver")
     @Override
     public SysUser findUserByLoginName(String userName) {
         Map<String,Object> map = Maps.newHashMap();
@@ -42,7 +42,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     }
 
     @SysLog("得到菜单数据")
-    @Cacheable(value = "allMenus",key = "'user_menu_'+T(String).valueOf(#userId)",unless = "#result == null or #result.size() == 0")
+    @Cacheable(value = "ASSET_ALL_MENU",key = "'user_menu_'+T(String).valueOf(#userId)",unless = "#result == null or #result.size() == 0")
     @Override
     public List<SysMenuVo> getMenuByUser(Long userId) {
         Map<String,Object> map = Maps.newHashMap();

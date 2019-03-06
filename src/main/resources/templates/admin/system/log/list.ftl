@@ -80,7 +80,7 @@
 
     <script type="text/html" id="remoteAddr">
 
-        {{# if(d.remoteAddr == '127.0.0.1'){ }}
+        {{# if(d.remoteAddr == ''){ }}
         <span>内网地址</span>
         {{# }else{ }}
         {{# if(d.province == undefined && d.city == undefined){ }}
