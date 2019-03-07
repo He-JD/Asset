@@ -28,11 +28,10 @@ public class UserController {
     @Autowired
     private ISysUserService iSysUserService;
 
-    @Cacheable(value = "ASSET_USER",key = "#id")
     @ApiOperation(value = "得到用户可操作菜单")
-    @GetMapping("menu/{id}")
+    @GetMapping("menu")
     @ResponseBody
-    public List<SysMenuVo> getUserMenu(@PathVariable("id") Integer id){
+    public List<SysMenuVo> getUserMenu(){
 
         Long userId  =ShiroData.getId();
         return iSysUserService.getMenuByUser(userId);

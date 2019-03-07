@@ -45,7 +45,7 @@ public class UserInfoController {
     @ApiOperation(value = "得到所有用户信息",notes = "查询所有用户信息")
     @GetMapping("getAll")
     //@SysLog("得到所有用户信息")
-    @Cacheable(value = "ASSET_USER",keyGenerator = "simpleKeyGenerator",cacheResolver = "redisCacheResolver")
+    @Cacheable(value = "ASSET_USER",cacheResolver = "redisCacheResolver")
     public ServerResponse getAll(){
      List<UserInfo> userInfoList= iUserInfoService.selectList(null);
      return ServerResponse.createBySuccess(userInfoList);
@@ -60,6 +60,17 @@ public class UserInfoController {
         redisTemplate.opsForValue().set(id,"tom");
       UserInfo userInfo= iUserInfoService.selectById(id);
       return   ServerResponse.createBySuccess(userInfo);
+    }
+
+    @ApiOperation(value = "查询某个用户-添加cacheresolver",notes = "根据Id查询用户")
+    @ApiImplicitParam( name = "id",value = "用户id",paramType = "path",dataType="Integer")
+    @GetMapping("get2/{id}")
+    @SysLog("查询某个用户")
+    @Cacheable(value = "ASSET_USER",key = "#id",cacheResolver = "redisCacheResolver")
+    public ServerResponse get2(@PathVariable("id") Integer id){
+        redisTemplate.opsForValue().set(id,"tom");
+        UserInfo userInfo= iUserInfoService.selectById(id);
+        return   ServerResponse.createBySuccess(userInfo);
     }
 
     @ApiOperation(value="添加用户信息",notes = "添加用户数据到数据库")

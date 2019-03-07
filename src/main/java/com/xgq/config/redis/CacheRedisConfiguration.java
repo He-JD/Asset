@@ -35,6 +35,7 @@ import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 @ConditionalOnClass({ JedisConnection.class, RedisOperations.class, Jedis.class })
 public class CacheRedisConfiguration {
@@ -68,38 +69,22 @@ public class CacheRedisConfiguration {
         public RedisTemplate cacheRedisTemplate() throws UnknownHostException {
             RedisTemplate template = new RedisTemplate();
             template.setConnectionFactory(cacheRedisConnectionFactory());
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.registerModule(new JavaTimeModule());    //jsr310,localeDate 等java8 解决
-            mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-            mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-            Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-            jackson2JsonRedisSerializer.setObjectMapper(mapper);
 
-            RedisSerializer<String> stringSerializer = new StringRedisSerializer();
+            RedisSerializer<String> redisSerializer = new StringRedisSerializer();
+            Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
 
-           // template.setKeySerializer(stringSerializer);
-          //  template.setHashKeySerializer(stringSerializer);
+            //解决查询缓存转换异常的问题
+            ObjectMapper om = new ObjectMapper();
+            om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+            jackson2JsonRedisSerializer.setObjectMapper(om);
+
+            template.setKeySerializer(redisSerializer);
             template.setValueSerializer(jackson2JsonRedisSerializer);
-         //   template.setHashValueSerializer(jackson2JsonRedisSerializer);
-
             template.afterPropertiesSet();
             return template;
         }
-        @Bean
-        public KeyGenerator simpleKeyGenerator() {
-            return (o, method, objects) -> {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(o.getClass().getSimpleName());
-                stringBuilder.append(".");
-                stringBuilder.append(method.getName());
-                stringBuilder.append("[");
-                for (Object obj : objects) {
-                    stringBuilder.append(obj.toString());
-                }
-                stringBuilder.append("]");
-                return stringBuilder.toString();
-            };
-        }
+
 
         protected final JedisConnectionFactory applyProperties(
                 JedisConnectionFactory factory) {
